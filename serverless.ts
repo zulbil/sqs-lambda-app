@@ -38,7 +38,12 @@ const serverlessConfiguration: AWS = {
             },
           },
         },
-      ]
+      ],
+      onError: {
+        destinantion: {
+          Ref: 'DeadLetterQueue'
+        }
+      }
     }
   },
   package: { individually: true },
@@ -60,6 +65,13 @@ const serverlessConfiguration: AWS = {
         Type: 'AWS::SQS::Queue',
         Properties: {
           QueueName: 'EShopQueue',
+          VisibilityTimeout: 120
+        }
+      },
+      DeadLetterQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+          QueueName: 'EShopDeadLetterQueue',
           VisibilityTimeout: 120
         }
       },
@@ -88,9 +100,11 @@ const serverlessConfiguration: AWS = {
                   {
                     Effect: 'Allow',
                     Action: ['sqs:SendMessage'],
-                    Resource: {
+                    Resource: [{
                       'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
-                    }
+                    }, {
+                      'Fn::GetAtt': ['DeadLetterQueue', 'Arn'],
+                    }]
                   },
                   {
                     Effect: "Allow",

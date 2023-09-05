@@ -1,4 +1,4 @@
-import { SQSClient, SendMessageBatchCommand, DeleteMessageCommand, ReceiveMessageCommand } from "@aws-sdk/client-sqs";
+import { SQSClient, SendMessageBatchCommand, SendMessageCommand, DeleteMessageCommand } from "@aws-sdk/client-sqs";
 
 const region        = process.env.REGION
 const queueUrl      = process.env.QUEUE_URL
@@ -6,20 +6,18 @@ const delaySeconds  = process.env.DELAY_S || 1;
 
 const sqsClient     = new SQSClient({ region });
 
-export const sendBatchToQueue = async (chunk: any[], index: number, metadata: any) => {
+export const sendMessage = async (message: string) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+export const sendBatchToQueue = async (chunk: any[], index: number) => {
   const Entries = chunk.map((record, i) => ({
       Id: `${Date.now()}-${index}-${i}`,
       MessageBody: JSON.stringify(record),
-      MessageAttributes: {    
-          uid: {
-              DataType: 'String',
-              StringValue: metadata.uid
-          },
-          email: {
-              DataType: 'String',
-              StringValue: metadata.email
-          }
-      },
       DelaySeconds: delaySeconds
   }));
 

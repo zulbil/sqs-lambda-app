@@ -20,13 +20,14 @@ const processHandler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
 
     const Message = JSON.stringify(data); 
 
-    logger.info('Sending message to SNS', { Message })
+    logger.info('Sending order details to the Queue', { Message })
     
 
     return formatJSONResponse({
       'message': 'Order process successfully',
       ...data
     });
+
   } catch (error) {
     logger.error('Error occured', { error })
     return formatJSONResponse({
@@ -38,6 +39,10 @@ const processHandler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
 
 export const notify = async (event): Promise<void> => {
   try {
+
+    for (const record of event.Records) {
+      const orderDetails = JSON.parse(record.body);
+    }
     const record = event.Records[0];
     logger.info('Reading event', { event })
 
