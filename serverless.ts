@@ -85,7 +85,7 @@ const serverlessConfiguration: AWS = {
                   {
                     Effect: 'Allow',
                     Action: ['sqs:SendMessage'],
-                    Resource: ['*']
+                    Resource: ['arn:aws:sqs:*:*']
                   },
                   {
                     Effect: "Allow",
