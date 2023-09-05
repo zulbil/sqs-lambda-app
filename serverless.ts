@@ -31,7 +31,7 @@ const serverlessConfiguration: AWS = {
         {
           sqs: {
             arn: {
-              'Fn::GetAtt': ['OrderQueue', 'Arn'],
+              'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
             },
           },
         },
