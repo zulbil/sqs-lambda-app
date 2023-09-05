@@ -85,7 +85,9 @@ const serverlessConfiguration: AWS = {
                   {
                     Effect: 'Allow',
                     Action: ['sqs:SendMessage'],
-                    Resource: ['arn:aws:sqs:*:*']
+                    Resource: {
+                      'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
+                    }
                   },
                   {
                     Effect: "Allow",
