@@ -56,7 +56,7 @@ const serverlessConfiguration: AWS = {
       OrderSQSQueue: {
         Type: 'AWS::SQS::Queue',
         Properties: {
-          QueueName: 'Order SQS Queue',
+          QueueName: 'EShopQueue',
           VisibilityTimeout: 120
         }
       },
