@@ -32,7 +32,7 @@ export const orderNotifier = {
   ],
   onError: {
     destinantion: {
-      Ref: 'DeadLetterQueue'
+      'Fn::GetAtt': ['DeadLetterQueue', 'Arn']
     }
   },
   role: 'OrderProcessorRole'
