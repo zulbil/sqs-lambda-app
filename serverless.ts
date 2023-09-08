@@ -80,7 +80,11 @@ const serverlessConfiguration: AWS = {
                 Statement: [
                   {
                     Effect: 'Allow',
-                    Action: ['sqs:SendMessage'],
+                    Action: [
+                      'sqs:SendMessage',
+                      'sqs:ReceiveMessage',
+                      'sqs:DeleteMessage'
+                    ],
                     Resource: [{
                       'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
                     }, {
