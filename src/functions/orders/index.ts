@@ -15,9 +15,25 @@ export const orderProcessor =  {
         }
       }
     }
-  ]
+  ],
+  role: 'OrderProcessorRole'
 };
 
 export const orderNotifier = {
-  handler: `${handlerPath(__dirname)}/handler.notify`
+  handler: `${handlerPath(__dirname)}/handler.notify`,
+  events: [
+    {
+      sqs: {
+        arn: {
+          'Fn::GetAtt': ['OrderSQSQueue', 'Arn']
+        }
+      }
+    }
+  ],
+  onError: {
+    destinantion: {
+      Ref: 'DeadLetterQueue'
+    }
+  },
+  role: 'OrderProcessorRole'
 };

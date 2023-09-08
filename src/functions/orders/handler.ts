@@ -37,7 +37,7 @@ const processHandler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
 };
 
 
-export const notify = async (event): Promise<void> => {
+export const notify = async (event: any): Promise<void> => {
   try {
 
     for (const record of event.Records) {

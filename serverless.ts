@@ -24,27 +24,8 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: { 
-    orderNotifier: {
-      ...orderNotifier,
-      role: 'OrderProcessorRole'
-    },
-    orderProcessor: {
-      ...orderProcessor,
-      events: [
-        {
-          sqs: {
-            arn: {
-              'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
-            },
-          },
-        },
-      ],
-      onError: {
-        destinantion: {
-          Ref: 'DeadLetterQueue'
-        }
-      }
-    }
+    orderNotifier,
+    orderProcessor
   },
   package: { individually: true },
   custom: {
