@@ -30,10 +30,10 @@ export const orderNotifier = {
       }
     }
   ],
-  onError: {
-    destinantion: {
-      'Fn::GetAtt': ['DeadLetterQueue', 'Arn']
-    }
-  },
+  // onError: {
+  //   destinantion: {
+  //     'Fn::GetAtt': ['DeadLetterQueue', 'Arn']
+  //   }
+  // },
   role: 'OrderProcessorRole'
 };
