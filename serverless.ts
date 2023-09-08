@@ -83,11 +83,10 @@ const serverlessConfiguration: AWS = {
                     Action: [
                       'sqs:*'
                     ],
-                    Resource: [{
-                      'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
-                    }, {
-                      'Fn::GetAtt': ['DeadLetterQueue', 'Arn'],
-                    }]
+                    Resource: [
+                      { 'Fn::GetAtt': ['OrderSQSQueue', 'Arn']}, 
+                      { 'Fn::GetAtt': ['DeadLetterQueue', 'Arn']}
+                    ]
                   },
                   {
                     Effect: "Allow",
