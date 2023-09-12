@@ -3,6 +3,7 @@ import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
 import schema from './schema';
 import { createLogger } from '@libs/logger';
+import { sendMessage } from './../../services/sqsHelper'
 
 const logger = createLogger('orderLogging');
 
@@ -21,7 +22,8 @@ const processHandler: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
     const Message = JSON.stringify(data); 
 
     logger.info('Sending order details to the Queue', { Message })
-    
+
+    await sendMessage(Message);
 
     return formatJSONResponse({
       'message': 'Order process successfully',

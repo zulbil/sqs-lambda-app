@@ -32,10 +32,8 @@ export const orderNotifier = {
   ],
   maximumRetryAttempts: 2, // Customize the number of retries
   deadLetter: {
-    sqs: {
-      arn: {
-        'Fn::GetAtt': ['DeadLetterQueue', 'Arn']
-      }
+    targetArn: {
+      'Fn::GetAtt': ['DeadLetterQueue', 'Arn']
     }
   },
   role: 'OrderProcessorRole'

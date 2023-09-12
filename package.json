@@ -13,6 +13,7 @@
     "@aws-sdk/client-sqs": "^3.405.0",
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
+    "serverless-plugin-lambda-dead-letter": "^1.2.1",
     "winston": "^3.10.0"
   },
   "devDependencies": {
