@@ -9,6 +9,7 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs18.x',
+    stage: 'dev',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -19,7 +20,8 @@ const serverlessConfiguration: AWS = {
       REGION_URL: 'us-east-1',
       QUEUE_URL: {
         'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
-      }
+      },
+      ORDER_QUEUE_URL: '${cf:dev-sqs-lambda-app.OrderSQSQueue}'
     },
   },
   // import the function via paths
