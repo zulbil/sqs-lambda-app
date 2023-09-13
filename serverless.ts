@@ -20,8 +20,7 @@ const serverlessConfiguration: AWS = {
       REGION_URL: 'us-east-1',
       QUEUE_URL: {
         'Fn::GetAtt': ['OrderSQSQueue', 'Arn'],
-      },
-      ORDER_QUEUE_URL: '${cf:dev-sqs-lambda-app.OrderSQSQueue}'
+      }
     },
   },
   // import the function via paths
