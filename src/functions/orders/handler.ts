@@ -48,12 +48,7 @@ export const notify = async (event: any): Promise<void> => {
     const record = event.Records[0];
     logger.info('Reading event', { event })
 
-    const message = JSON.parse(record.Sns.Message);
-
-    const orderStatus = message.orderStatus
-    const PhoneNumber = message.phoneNumber
-
-    logger.info('SMS notification sent successfully');
+    // process the order
     
   } catch (error) {
     logger.error('Error occured', { message : error.message }) 

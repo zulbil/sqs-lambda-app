@@ -24,7 +24,7 @@ export const sendMessage = async (MessageBody: string) => {
         console.log(response);
         return response;
     } catch (error) {
-        
+        console.log('Error happened ...', error.message)
     }
 }
 
