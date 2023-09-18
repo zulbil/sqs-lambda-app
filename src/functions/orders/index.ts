@@ -32,9 +32,7 @@ export const orderNotifier = {
   ],
   maximumRetryAttempts: 2, // Customize the number of retries
   onError: {
-    destination: {
-      'Ref': 'DeadLetterQueue', // Reference to the Dead Letter Queue
-    },
+    'Fn::GetAtt': ['DeadLetterQueue', 'Arn']
   },
   role: 'OrderProcessorRole'
 };
